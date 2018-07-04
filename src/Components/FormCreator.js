@@ -1,20 +1,24 @@
 import React , {Component} from 'react';
 
 import MyInput from './MyInput';
+import FormSelector from './FormSelector';
+
 
 class FormCreator extends Component{
+
   constructor(){
     super();
+
     this.state ={
       ///estos osn los datos que se esperan recibir desde el servidor
-      title:'',
-      code:'',
+      title: "" ,
+      code: "",
       car:''
 
     };
 
   }
-  handleInputChange(){
+  handleInputChange () {
     console.log("writting....");
 
   }
@@ -22,42 +26,15 @@ class FormCreator extends Component{
     return (
       <div className="card">
         <form onSubmit={this.handleSubmit} className="card-body">
-          <MyInput titulo= "holi"/>
-          <div className="form-group">
-            <input
-              type="text"
-              name="responsible"
-              className="form-control"
-              value={this.state.responsible}
-              onChange={this.handleInputChange}
-              placeholder="Responsible"
-              />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="description"
-              className="form-control"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              placeholder="Description"
-              />
-          </div>
-          <div className="form-group">
-            <select
-                name="priority"
-                className="form-control"
-                value={this.state.priority}
-                onChange={this.handleInputChange}/// LLamado al metodo handleInputChange
-              >
-              <option>low</option>
-              <option>medium</option>
-              <option>high</option>
-            </select>
-          </div>
+
+          <MyInput titulo= "TaskName"/>
+          <MyInput titulo= "TaskPrioiti"/>
+          <MyInput titulo= "TaskCode"/>
+          <FormSelector holi= "Holi" chau = "chau" fun= {this.handleInputChange}/>
           <button type="submit" className="btn btn-primary">
             Save
           </button>
+
         </form>
       </div>
     )

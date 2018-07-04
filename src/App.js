@@ -4,7 +4,11 @@ import './App.css';
 
 import Navigation from './Components/Navigation';
 import FormCreator from './Components/FormCreator';
-import MyInput from './Components/MyInput';
+import MyCard from './Components/MyCard';
+import ExpandBar from './Components/ExpandBar';
+
+
+import Timer from './Functionals/Timer';
 
 
 import {data} from './data/data.json';
@@ -18,13 +22,20 @@ class App extends Component {
     super();
     this.state={
     title:"very sirius "  ,
-    data
+
+
+    data,
+    count: 0
+
     };
   }
 //asdasd construyendo objeto html con react
   render() {
+    //const time = <Timer/>;
+
     const datas = this.state.data.map((data,i) => {
       return(
+
       <div className="col-md-4">
         <div className="card mt-4">
           <div className= "card-header">
@@ -44,18 +55,23 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Navigation titulo= "holi"/>
-        <Navigation />
-        <Navigation titulo= "ASDASD"/>
-        <Navigation titulo= "Moggy Data Count : " data = {this.state.data.length}/>
+
+        <Navigation titulo= "Moggy Data Count : " data = {<Timer/>}/>
 
         <div className="container">
             <div className="row mt-4">
+              <ExpandBar titulo = "HOLAA" />
               <FormCreator/>
               {datas}
+              <MyCard  />
+
+              <MyCard test={true} msg={<Timer/>} />
+
             </div>
             <img src={logo} className="App-logo" alt="logo" />
+
         </div>
+
       </div>
 
     );
