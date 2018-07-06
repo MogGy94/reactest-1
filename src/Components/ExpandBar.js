@@ -59,7 +59,7 @@ class ExpandBar extends React.Component{
   }
 
   render(){
-    console.log(this.state);
+    //console.log(this.state);
     return(
       <nav className="navbar navbar-dark bg-dark mr-3">
       <a className="navbar-brand" href="#">{this.state.titulo}</a>

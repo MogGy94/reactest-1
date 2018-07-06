@@ -1,14 +1,25 @@
 import React,{Component} from 'react';
 
-import {MyInput,handleInputChange} from './MyInput';
-
 
 class FormSelector extends Component{
   constructor(props) {
     super(props);
-    this.state = {count: props.initialCount};
-  }
+    this.state = {
+      count: props.initialCount,
+      name:""
+    };
 
+    this.handleInputChange = this.handleInputChange.bind(this);// BIding
+  }
+  handleInputChange (e){
+    console.log(e.target.value,e.target,e.target.name);
+    const {value,name} = e.target;
+    this.setState({
+      [name]:value
+    })
+    console.log(this.state);
+    console.log(this.props)
+  };
   render() {
     //console.log(JSON.stringify(this.props));
     //console.log(JSON.stringify(this.state));
@@ -19,7 +30,8 @@ class FormSelector extends Component{
             name="priority"
             className="form-control"
             value={this.props.priority}
-            onChange={handleInputChange}/// LLamado al metodo handleInputChange
+            onChange={this.handleInputChange}/// LLamado al metodo handleInputChange
+
           >
           <option>low</option>
           <option>medium</option>

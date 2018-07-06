@@ -28,27 +28,24 @@ class App extends Component {
     count: 0
 
     };
+    this.updateData = this.updateData.bind(this);
   }
+
+
+  updateData(dat){// metodo enviado al hijo
+    this.setState({
+        data :[...this.state.data,dat]
+    });
+  }
+
 //asdasd construyendo objeto html con react
   render() {
     //const time = <Timer/>;
 
     const datas = this.state.data.map((data,i) => {
       return(
+      <MyCard titulo={data.titulo} num={data.code}  msg={data.car}  />
 
-      <div className="col-md-4">
-        <div className="card mt-4">
-          <div className= "card-header">
-            <h1>{data.titulo}</h1>
-            <span className="badge badge-pill badge-danger">
-              {"code: "+data.code}
-            </span>
-          </div>
-            <div className= "card-body">
-                <mark>{data.car}</mark>
-            </div>
-        </div>
-      </div>
       )
     })
 
@@ -61,11 +58,10 @@ class App extends Component {
         <div className="container">
             <div className="row mt-4">
               <ExpandBar titulo = "HOLAA" />
-              <FormCreator/>
+              <FormCreator onUpData={this.updateData}/> {/*Biding metodo padre-->hijo*/}
               {datas}
-              <MyCard  />
-
-              <MyCard test={true} msg={<Timer/>} />
+              <MyCard titulo="HOLA" num={2}  msg="{data.car}"  />
+              <MyCard titulo="FATS" num={5}  msg={<Timer/>} />
 
             </div>
             <img src={logo} className="App-logo" alt="logo" />

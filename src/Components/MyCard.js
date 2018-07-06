@@ -36,17 +36,17 @@ export class  MyCard extends React.Component{
   }
 
   componentDidMount() {// este metodo se ejecuta contantemente un metodo de chequee constante
-    this.setState(
-      {
-      msg: this.props.msg
-      }
-    );
+    this.setState({
+      titulo :  this.props.titulo,
+      num   : this.props.num,
+      msg    : this.props.msg,
+    });
   }
 
   render(){
-    console.log("Card Component");
+    //console.log("Card Component");
     if(this.state.test){
-      console.log(this.state);
+    //  console.log(this.state);
     }
 
     return(

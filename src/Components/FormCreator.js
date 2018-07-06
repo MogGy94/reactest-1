@@ -11,25 +11,46 @@ class FormCreator extends Component{
 
     this.state ={
       ///estos osn los datos que se esperan recibir desde el servidor
-      title: "" ,
+      titulo: "" ,
       code: "",
       car:''
 
     };
+  this.handleSubmit = this.handleSubmit.bind(this)
+  this.handleInputChangeParent = this.handleInputChangeParent.bind(this)
+  }
+
+  handleSubmit (e) {
+    console.log("submiting....");
+    e.preventDefault();
+    this.props.onUpData(this.state) //metodo del Padre
+    console.log("FormState",this.state);
+    this.setState({
+      titulo: "" ,
+      code: "",
+      car:''
+    });
 
   }
-  handleInputChange () {
-    console.log("writting....");
+
+  handleInputChangeParent(e){// metodo enviado al hijo
+    console.log("form",this.state);
+    const {name,value} = e.target
+    this.setState({
+      [name]:value
+    })
 
   }
+
   render() {
     return (
       <div className="card">
         <form onSubmit={this.handleSubmit} className="card-body">
 
-          <MyInput titulo= "TaskName"/>
-          <MyInput titulo= "TaskPrioiti"/>
-          <MyInput titulo= "TaskCode"/>
+          <MyInput fun= {this.handleInputChangeParent} name= "titulo"/>
+          <MyInput fun= {this.handleInputChangeParent} name= "code"/>
+          <MyInput fun= {this.handleInputChangeParent} name= "car"/>
+
           <FormSelector holi= "Holi" chau = "chau" fun= {this.handleInputChange}/>
           <button type="submit" className="btn btn-primary">
             Save

@@ -1,34 +1,41 @@
 import React,{Component} from 'react';
 
-export function handleInputChange (e){
-  console.log(e.target.value,e.target,e.target.placeholder,e.target.ti);
-
-};
 
 class MyInput extends Component{
   constructor(props){
     super(props);
     this.state = {
-      titulo :  "asdasda"
+
+      titulo :  ""
+
     }
-
+    this.handleInputChange =  this.handleInputChange.bind(this);  // BIding
   }
 
-  componentDidMount(){
-    this.setState(
-      {
-      //  titulo: this.props.titulo
-      }
-    );
-  }
+  handleInputChange (e){// metodo para obtencion de datos desde ui
+   //console.log(e.target.value,e.target,e.target.name);
+   this.props.fun;
+   const {value,name} = e.target;
+   this.setState({
+     [name]:value
+   })
+   console.log("INputState",this.state);
+  };
+
+
+
+
+
   render() {
     return (
       <div className="form-group">
         <input
           type="text"
           className="form-control"
+          name = {this.props.name}
           ti={this.state.titulo}
-          onChange={this.handleInputChange}
+
+          onChange={this.props.fun}
           placeholder= {this.props.titulo}
           />
       </div>
